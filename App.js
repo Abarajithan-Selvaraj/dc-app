@@ -1,20 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialIcons } from '@expo/vector-icons';
+
+import TouchScreen from './src/screens/TouchScreen';
+import PinScreen from './src/screens/PinScreen';
+import HomeScreen from './src/screens/HomeScreen';
 
 export default function App() {
+  const AppStack = createStackNavigator();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <AppStack.Navigator screenOptions={{headerShown: false}}>
+        <AppStack.Screen name="Pin" component={PinScreen}/>
+        <AppStack.Screen name="Touch" component={TouchScreen}/>
+        {/* <AppStack.Screen name="Home" component={HomeScreen}/> */}
+      </AppStack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
